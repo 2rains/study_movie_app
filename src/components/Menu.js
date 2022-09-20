@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import "./Menu.css";
+import Youtube from "./Youtube";
 
 function Menu() {
   return (
@@ -37,6 +38,9 @@ function Menu() {
           </li>
           <li>
             <Link to="/about">💙 About us..</Link>
+          </li>
+          <li>
+            <Link to="/youtube">💙 유튜브 클론</Link>
           </li>
         </ul>
       </nav>
