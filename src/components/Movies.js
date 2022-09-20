@@ -1,55 +1,137 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import Movie from "./Movie";
+import "./Movies.css";
+// import App from "./components/App";
 
-// improt 컴포넌트명 from "./컴포넌트 들어있는 파일명";
+function Movies(props) {
+  console.log(props.apiPath);
+  const [loading, setloading] = useState(true);
+  const [movies, setMovies] = useState([]);
 
-const 영화목록 = [
-  {
-    id: 1,
-    영화명: "어린신부",
-    주연배우: "문근영 김래원",
-    장르: "로맨스코미디",
-    상영시간: ["10:00", "12:00", "14:00", "16:00", "18:00", "20:00", "22:00"],
-    티켓가격: 15000,
-  },
-  {
-    id: 2,
-    영화명: "리틀포레스트",
-    주연배우: "김태리",
-    장르: "힐링물",
-    티켓가격: 16000,
-  },
-  {
-    id: 3,
-    영화명: "이프 온리",
-    주연배우: "제니퍼 러브",
-    장르: "판타지로맨스",
-    상영시간: ["10:00", "16:00", "18:00", "20:00", "22:00"],
-    티켓가격: 17000,
-  },
-];
+  async function getMovieAPI() {
+    console.log("getMovieAPI() 함수가 호출되었습니다");
+    if (!props.apiPath) return;
+    // if (0 < movies.length) return;
 
-function Movies() {
-  //JSX 문법(리액트)
+    const result = await axios.get(
+      `https://api.themoviedb.org/3/movie/${props.apiPath}?api_key=c99cf9dfdf0f8550359235f424bae23b&language=ko&region=KR`
+    );
+    console.log(result.data.results);
+    setMovies(result.data.results);
+    setloading(false);
+  }
+
+  useEffect(
+    function () {
+      getMovieAPI();
+    },
+    [props.apiPath]
+  );
+
+  //   로딩화면;
+  //   setTimeout(function () {
+  //     setloading(false);
+  //   }, 5000);
+
   return (
     <>
-      <h1>😊Movie App😊</h1>
-      {영화목록.map(function (영화) {
-        return (
-          <Movie
-            key={영화.id} // 최상위 컴포넌트에 중복 안 되게 키값 넣어야 함!!! 안 그럼 경고 뜸(리액트 특징)
-            movieName={영화.영화명}
-            actor={영화.주연배우}
-            genre={영화.장르}
-            time={영화.상영시간}
-            price={영화.티켓가격}
-          />
-        );
-      })}
-      <Movie movieName={"어린신부"} actor={"문근영"} genre={"드라마"} />
+      <div>
+        {loading ? (
+          <div>로딩중...</div>
+        ) : (
+          <>
+            {movies.map(function (ele, idx) {
+              return (
+                <Movie
+                  key={ele.id}
+                  id={ele.id}
+                  title={ele.title}
+                  poster_path={ele.poster_path}
+                  overview={ele.overview}
+                  vote_average={ele.vote_average}
+                  adult={ele.adult}
+                  original_language={ele.original_language}
+                  release_date={ele.release_date}
+                />
+              );
+            })}
+            {/* <Movie
+              title={movies[0].title}
+              poster_path={movies[0].poster_path}
+              overview={movies[0].overview}
+              vote_average={movies[0].vote_average}
+              adult={movies[0].adult}
+              original_language={movies[0].original_language}
+              release_date={movies[0].release_date}
+            />
+            <Movie
+              title={movies[1].title}
+              poster_path={movies[1].poster_path}
+              overview={movies[1].overview}
+              vote_average={movies[1].vote_average}
+              adult={movies[1].adult}
+              original_language={movies[1].original_language}
+              release_date={movies[1].release_date}
+            />
+            <Movie
+              title={movies[2].title}
+              poster_path={movies[2].poster_path}
+              overview={movies[2].overview}
+              vote_average={movies[2].vote_average}
+              adult={movies[2].adult}
+              original_language={movies[2].original_language}
+              release_date={movies[2].release_date}
+            /> */}
+
+            {/* <div className="movie">
+              <img
+                src={`https://image.tmdb.org/t/p/original/${movies[0].poster_path}`}
+                width={200}
+              ></img>
+              <div>포스터이미지: {movies[0].poster_path}</div>
+              <div>제 목 : {movies[0].title}</div>
+              <div>줄거리 : {movies[0].overview}</div>
+              <div>평점 : {movies[0].vote_average}</div>
+              <div>성인영화 : {movies[0].adult}</div>
+              <div>영화언어 : {movies[0].original_language}</div>
+              <div>개봉일 : {movies[0].release_date}</div>
+              <hr />
+            </div>
+
+            <div className="movie">
+              <img
+                src={`https://image.tmdb.org/t/p/original/${movies[1].poster_path}`}
+                width={200}
+              ></img>
+              <div>포스터이미지: {movies[1].poster_path}</div>
+              <div>제 목: {movies[1].title}</div>
+              <div>줄거리 : {movies[1].overview}</div>
+              <div>평점 : {movies[1].vote_average}</div>
+              <div>성인영화 : {movies[1].adult}</div>
+              <div>영화언어 : {movies[1].original_language}</div>
+              <div>개봉일 : {movies[1].release_date}</div>
+              <hr />
+            </div>
+            <div className="movie">
+              <img
+                src={`https://image.tmdb.org/t/p/original/${movies[2].poster_path}`}
+                width={200}
+              ></img>
+              <div>포스터이미지: {movies[2].poster_path}</div>
+              <div>제 목 : {movies[2].title}</div>
+              <div>줄거리 : {movies[2].overview}</div>
+              <div>평점 : {movies[2].vote_average}</div>
+              <div>성인영화 : {movies[2].adult}</div>
+              <div>영화언어 : {movies[2].original_language}</div>
+              <div>개봉일 : {movies[2].release_date}</div>
+              <hr />
+            </div> */}
+          </>
+        )}
+      </div>
     </>
   );
 }
 
 export default Movies;
-// 얘가 있으면 밖에서 사용 가능!

@@ -1,40 +1,49 @@
-import React from "react";
-import PropTypes from "prop-types"; // ES6
+import PropTypes from "prop-types";
+import "./Movie.css";
+import Movies from "./Movies";
 
 function Movie(props) {
-  // console.log(props); //props 자체가 movie의 속성을 담고 있음!!
   return (
     <>
-      <hr></hr>
-      <div>영화이름 : {props.movieName}</div>
-      <div>주연배우 : {props.actor}</div>
-      <div>장 르 : {props.genre}</div>
-      <div>
-        상영시간 :{" "}
-        {props.time
-          ? props.time
-              .filter(function (ele) {
-                return typeof ele === "string" ? true : false;
-              })
-              .join(" | ")
-          : "상영정보 없지롱😜"}
-      </div>
-      <div>
-        티켓가격 :{" "}
-        {props.price ? `${props.price + 500}원` : `상영정보 없지롱😜`}
+      <div className="movie_data">
+        <div className="movie_poster">
+          <img
+            className="movie_poster_img"
+            src={`https://image.tmdb.org/t/p/original/${props.poster_path}`}
+            width={100}
+          ></img>
+          <div className="movie_adult">{!props.adult ? "19" : null}</div>
+        </div>
+        <h3 className="movie_title">{props.title}</h3>
+        <div className="movie_overview">{`<줄거리> ${props.overview.slice(
+          0,
+          100
+        )}...`}</div>
+        <div className="movie_vote">
+          ({props.vote_average}/10){" "}
+          {Array(Number(props.vote_average.toFixed(0)))
+            .fill(0)
+            .map((ele, idx) => (
+              <span key={idx}>⭐</span>
+            ))}
+        </div>
+        <div className="movie_lang">{`<원어> ${props.original_language}`}</div>
+        <div className="movie_date movie_info">{`<개봉일> ${props.release_date}`}</div>
+        <div className="movie_id movie_info">{`영화ID ${props.id}`}</div>
       </div>
     </>
   );
 }
 
-Movie.propTypes = {
-  // 타입 지정!!
-  movieName: PropTypes.string.isRequired, // isRequired는 moviename을 꼭 써야한다는 말(안 쓰면 오류)
-  actor: PropTypes.string.isRequired,
-  genre: PropTypes.string.isRequired,
-  time: PropTypes.array,
-  price: PropTypes.number,
+Movie.protoTypes = {
+  id: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  poster_path: PropTypes.string.isRequired,
+  overview: PropTypes.string.isRequired,
+  vote_average: PropTypes.number,
+  adult: PropTypes.bool.isRequired,
+  original_language: PropTypes.string.isRequired,
+  release_date: PropTypes.string.isRequired,
 };
 
 export default Movie;
-// Movie는 컴포넌트명(함수)임!!
