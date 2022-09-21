@@ -1,7 +1,7 @@
 import Movies from "./components/Movies";
 import React from "react";
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import Menu from "./components/Menu";
 import Youtube from "./components/Youtube";
 
@@ -20,7 +20,7 @@ function About() {
 
 function App(props) {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Menu />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -30,7 +30,7 @@ function App(props) {
         <Route path="/about" element={<About />} />
         <Route path="/youtube" element={<Youtube />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
