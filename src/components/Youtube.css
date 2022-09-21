@@ -9,6 +9,9 @@
   --menu-justify-items: center; */
 }
 
+h2 {
+  flex-wrap: nowrap;
+}
 .yt_main {
   background-color: rgb(44, 44, 44);
   color: rgb(211, 163, 197);
@@ -108,7 +111,6 @@
 .yt_main_top4 {
   display: flex;
   justify-content: center;
-  flex-wrap: nowrap;
   border-bottom: 10px solid rgb(44, 44, 44);
 }
 
@@ -197,5 +199,4 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* font-size: 20px; */
 }

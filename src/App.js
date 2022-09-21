@@ -6,7 +6,7 @@ import Menu from "./components/Menu";
 import Youtube from "./components/Youtube";
 
 function Home() {
-  return <h2>홈 컴포넌트</h2>;
+  return <h2>홈 컴포넌트2</h2>;
 }
 
 function About() {
@@ -21,6 +21,7 @@ function About() {
 function App(props) {
   return (
     <HashRouter>
+      <h1 className="text-3xl font-bold underline">Hello world!</h1>
       <Menu />
       <Routes>
         <Route path="/" element={<Home />} />
