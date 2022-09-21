@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/study_moive_app/static/css/main.85a5e5ee.css",
+    "main.js": "/study_moive_app/static/js/main.d3cda3ff.js",
+    "index.html": "/study_moive_app/index.html",
+    "main.85a5e5ee.css.map": "/study_moive_app/static/css/main.85a5e5ee.css.map",
+    "main.d3cda3ff.js.map": "/study_moive_app/static/js/main.d3cda3ff.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.85a5e5ee.css",
+    "static/js/main.d3cda3ff.js"
+  ]
+}
