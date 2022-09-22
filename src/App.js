@@ -4,6 +4,7 @@ import "./App.css";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import Menu from "./components/Menu";
 import Youtube from "./components/Youtube";
+import Kakao from "./components/Kakao";
 
 function Home() {
   return <h2>홈 컴포넌트2</h2>;
@@ -21,7 +22,6 @@ function About() {
 function App(props) {
   return (
     <HashRouter>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
       <Menu />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -30,6 +30,7 @@ function App(props) {
         <Route path="/upcoming" element={<Movies apiPath="upcoming" />} />
         <Route path="/about" element={<About />} />
         <Route path="/youtube" element={<Youtube />} />
+        <Route path="/kakao" element={<Kakao />} />
       </Routes>
     </HashRouter>
   );
