@@ -39,12 +39,12 @@ function Menu() {
           <li>
             <Link to="/about">💙 About us..</Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/youtube">💙 유튜브 클론</Link>
           </li>
           <li>
             <Link to="/kakao">💙 카카오 클론</Link>
-          </li>
+          </li> */}
         </ul>
       </nav>
     </>
