@@ -12,7 +12,7 @@ function Movie(props) {
             src={`https://image.tmdb.org/t/p/original/${props.poster_path}`}
             width={100}
           ></img>
-          <div className="movie_adult">{!props.adult ? "19" : null}</div>
+          {/* <div className="movie_adult">{!props.adult ? "19" : null}</div> */}
         </div>
         <h3 className="movie_title">{props.title}</h3>
         <div className="movie_overview">{`<줄거리> ${props.overview.slice(
